@@ -1,0 +1,3 @@
+# DjangoApps
+
+Django related apps.
