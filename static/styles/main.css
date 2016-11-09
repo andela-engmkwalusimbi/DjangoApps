@@ -1,0 +1,7 @@
+h1 {
+    color: #f5f6a7;
+}
+
+.thumbnail > img {
+    max-height: 550px;
+}

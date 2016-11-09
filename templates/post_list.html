@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+	<h4>Blog {{ title }}</h4>
+		
+	{% for post in posts%}
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="thumbnail">
+				{% if post.image %}
+					<img src="{{ post.image.url }}" alt="{{post.title}}" height="150px" class="img-responsive" />
+				{% endif %}
+				<div class="caption">
+					<h3><a href="{{ post.get_absolute_url }}"> {{ post.title }} </a> <small>{{ post.timestamp|timesince }} ago</small></h3>
+					<p>{{ post.content|linebreaks|truncatechars:50 }}</p>
+					<p><a href="{{ post.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?{{ page_req }}={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current"> Page {{ posts.number }} of {{ posts.paginator.num_pages }}. </span>
+            
+            {% if posts.has_next %}
+                <a href="?{{ page_req }}={{ posts.next_page_number }}">next</a> 
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock content %}

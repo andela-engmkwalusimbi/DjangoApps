@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ post.title }} | {{ block.super }} {% endblock head_title %}
+
+{% block content %}
+<div class="col-sm-6 col-sm-offset-3">
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{post.title}}" class="img-responsive" />
+    {% endif %}
+    
+    <h2>{{post.title}} <small>{{post.timestamp}}</small></h2>
+    {{post.content}}
+</div>
+{% endblock content %}
